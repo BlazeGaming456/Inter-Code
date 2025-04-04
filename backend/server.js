@@ -7,10 +7,20 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
 app.use('/code',codeRouter);
-app.options('*',cors);
+
+const corsOptions = {
+  origin: [
+    'https://inter-code-frontend.vercel.app', // Your frontend URL
+    'http://localhost:3000' // For local testing
+  ],
+  methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS for preflight
+  allowedHeaders: ['Content-Type'],
+  credentials: true // If using cookies/auth
+};
+app.use(cors(corsOptions)); // Apply CORS middleware
+app.options('*', cors()); // Enable preflight for all routes
 
 app.get('/', (req, res) => {
     res.json({ 
