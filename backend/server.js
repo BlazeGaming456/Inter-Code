@@ -12,6 +12,13 @@ app.use(cors());
 app.use('/code',codeRouter);
 app.options('*',cors);
 
+app.get('/', (req, res) => {
+    res.json({ 
+      status: 'API is running', 
+      endpoints: ['/api/convert', '/api/explain'] // List your actual routes
+    });
+  });
+
 app.listen(PORT,()=>{
     console.log(`Server is listening at PORT ${PORT}`);
 })
