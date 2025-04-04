@@ -14,8 +14,7 @@ app.options('*',cors);
 
 app.get('/', (req, res) => {
     res.json({ 
-      status: 'API is running', 
-      endpoints: ['/api/convert', '/api/explain'] // List your actual routes
+      status: 'API is running'
     });
   });
 
