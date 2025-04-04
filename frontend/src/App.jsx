@@ -13,7 +13,7 @@ const App = () => {
       <ToastContainer />
       <Navbar/>
       <Routes>
-        <Route path='/convert' element={<Conversion/>} />
+        <Route path='/' element={<Conversion/>} />
         <Route path='/explain' element={<Explanation/>} />
         <Route path='/generate' element={<Generation/>} />
       </Routes>

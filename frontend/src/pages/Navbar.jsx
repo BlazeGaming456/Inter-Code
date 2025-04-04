@@ -7,7 +7,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const navItems = [
-    { name: 'Conversion', path: '/convert' },
+    { name: 'Conversion', path: '/' },
     { name: 'Generation', path: '/generate' },
     { name: 'Explain', path: '/explain' }
   ];
