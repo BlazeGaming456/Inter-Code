@@ -4,6 +4,8 @@ import DropDown from '../components/DropDown';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Conversion = () => {
   const[targetLanguage,setTargetLanuage] = useState("cpp");
   const[convLanguage,setConvlanguage] = useState("java")
@@ -27,7 +29,7 @@ const Conversion = () => {
         return;
       }
       setIsLoading(true);
-      const response = await axios.post("http://localhost:5000/code/convert",
+      const response = await axios.post(`${BACKEND_URL}/code/convert`,
        {code: code,
         targetLanguage: targetLanguage,
         convLanguage: convLanguage,

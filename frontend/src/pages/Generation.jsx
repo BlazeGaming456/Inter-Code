@@ -4,6 +4,8 @@ import CodeEditor from '../components/CodeEditor';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Generation = () => {
   const [language, setLanguage] = useState("");
   const [codeResponse, setCodeResponse] = useState({ generatedCode: "" });
@@ -23,7 +25,7 @@ const Generation = () => {
       }
 
       setIsLoading(true);
-      const response = await axios.post("http://localhost:5000/code/generate", {
+      const response = await axios.post(`${BACKEND_URL}/code/generate`, {
         prompt: prompt,
         language: language,
       });
