@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Palanquin:wght@100;200;300;400;500;600;700&family=Prata&display=swap');
+@import "tailwindcss";
+
+.palanquin {
+  font-family: 'Palanquin', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
