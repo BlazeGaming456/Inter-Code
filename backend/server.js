@@ -3,31 +3,42 @@ import cors from 'cors';
 import 'dotenv/config';
 import codeRouter from './routes/codeRouter.js';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(express.json());
 
-app.use('/code',codeRouter);
-
+// CORS Middleware must come FIRST
 const corsOptions = {
   origin: [
-    'https://inter-code-frontend.vercel.app', // Your frontend URL
-    'http://localhost:3000' // For local testing
+    'https://inter-code-frontend.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:5173'
   ],
-  methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS for preflight
-  allowedHeaders: ['Content-Type'],
-  credentials: true // If using cookies/auth
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
-app.use(cors(corsOptions)); // Apply CORS middleware
-app.options('*', cors()); // Enable preflight for all routes
 
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
+// Other middleware
+app.use(express.json());
+
+// Routes
+app.use('/code', codeRouter);
+
+// Test route
 app.get('/', (req, res) => {
-    res.json({ 
-      status: 'API is running'
-    });
+  res.json({ 
+    status: 'API is running',
+    cors: 'Configured for localhost:5173'
   });
+});
 
-app.listen(PORT,()=>{
-    console.log(`Server is listening at PORT ${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server is listening at PORT ${PORT}`);
+});
